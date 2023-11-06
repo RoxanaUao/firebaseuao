@@ -1,20 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      CRUD FIREBASE
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card>
+    <ion-card-title class="ion-text-center">Create Student</ion-card-title>
+    <ion-card-content>
+      <ion-input type="text" [(ngModel)]="studentName" placeholder="Name"></ion-input>
+      <ion-input type="text" [(ngModel)]="studentAge" placeholder="Age"></ion-input>
+      <ion-input type="text" [(ngModel)]="studentAddress" placeholder="Address"></ion-input>
+      <ion-button shape="round" (click)="create_record()" expand="full" color="success"><ion-icon name="save"></ion-icon></ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let item of student">
+    <ion-card-title>{{item.Data.Name}}</ion-card-title>
+    <ion-card-content>
+      Id: {{item.id}}<br>
+      Age: {{item.Data.Age}}<br>
+      Address: {{item.Data.Address}}<br>
+    </ion-card-content>
+    <div class="ion-text-center">
+      <ion-button shape="round" (click)="editRecord({id: item.id, name: item.Data.Name, age:item.Data.Age, address:item.Data.Address})" color="warning"><ion-icon slot="icon-only" name="create-outline"></ion-icon></ion-button>
+      <ion-button  shape="round" (click)="deleteRecord(item.id)" color="danger"><ion-icon slot="icon-only" name="trash-outline"></ion-icon></ion-button>
+    </div>
+
+  </ion-card>
+  <ion-button  shape="round" expand="full" routerLink="/login" color="primary">ENTRAR</ion-button>
 </ion-content>
+
+
+  
+
