@@ -1,13 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>registro</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">registro</ion-title>
+      <ion-title size="large">Registro</ion-title>
     </ion-toolbar>
   </ion-header>
+  
+  <ion-card>
+    <br />
+    <ion-card-title class="ion-text-center">Ingresa tus datos de inicio de sesión</ion-card-title>
+    <ion-card-content>
+      <ion-input type="text" [(ngModel)]="nombre" label="Nombre Completo" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <br />
+      <ion-input type="text" [(ngModel)]="correo" label="Correo" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <br />
+      <ion-input type="text" [(ngModel)]="telefono" label="Télefono" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <br />
+      <ion-input type="text" [(ngModel)]="cedula" label="Cédula" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <br />
+      <ion-input type="text" [(ngModel)]="contrasena" label="Contraseña" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <br />
+      <ion-button shape="round" expand="full" (click)="registrar()" color="primary">Guardar</ion-button>
+      <ion-button  shape="round" expand="full" routerLink="/home" color="medium">Regresar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

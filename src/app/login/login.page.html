@@ -15,12 +15,12 @@
     <br />
     <ion-card-title class="ion-text-center">Ingresa tus datos de inicio de sesión</ion-card-title>
     <ion-card-content>
-      <ion-input type="text" [(ngModel)]="cedula" label="Cédula" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <ion-input type="text" formControlName="email" label="Correo" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
       <br />
-      <ion-input type="text" [(ngModel)]="contrasena" label="Contraseña" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+      <ion-input type="text" formControlName="password" label="Contraseña" type="password" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
       <br />
-      <ion-button shape="round" expand="full" color="primary">Entrar</ion-button>
-      <ion-button  shape="round" expand="full" routerLink="/home" color="Medium">Regresar</ion-button>
+      <ion-button shape="round" expand="full" (click)="ingresar()" color="primary">Entrar</ion-button>
+      <ion-button  shape="round" expand="full" routerLink="/home" color="medium">Regresar</ion-button>
     </ion-card-content>
   </ion-card>
 

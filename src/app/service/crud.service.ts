@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FirebaseAppModule } from '@angular/fire/app';
+//import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { PickerController } from '@ionic/angular';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, DocumentData } from 'firebase/firestore';
+import { Auth,signOut,createUserWithEmailAndPassword,signInWithEmailAndPassword} from '@angular/fire/auth';
 
 
 @Injectable({
@@ -10,7 +12,20 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 })
 export class CrudService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore,private auth:Auth) { }
+
+  register({email,password}:any){
+    return createUserWithEmailAndPassword(this.auth,email,password);
+  }
+
+  login({email,password}:any){
+    return signInWithEmailAndPassword(this.auth,email,password);
+  }
+
+  salir(){
+    return signOut(this.auth);
+  }
+
 
   create_student(record:{}){
     return this.firestore.collection('Student').add(record);
@@ -31,14 +46,14 @@ export class CrudService {
     return this.firestore.collection('padres').add(record);
   }
   entrar_padre(cedula:string, contraseña:string){
-    res: this.login_padre(cedula, contraseña);
-    if (res == null){
-      return 0;
+    let response : boolean;
+    const documentos = this.login_padre(cedula, contraseña);
+    if (Array.isArray(documentos) && documentos.length === 0){
+      return response=false;
     } else  {
-      return this.firestore.collection('padres').doc;
+      return response= true;
     };
   }
-  
   async login_padre(cedula: string, contraseña: string) {
     const q = query(collection(this.firestore.firestore, 'miColeccion'), 
       where('cedula', '==', cedula),
